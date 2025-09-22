@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,6 @@ import com.phv.foodptit.entity.DTO.OrderResponse;
 import com.phv.foodptit.entity.DTO.UpdateStatusRequest;
 import com.phv.foodptit.repository.AddressRepository;
 import com.phv.foodptit.repository.CartRepository;
-import com.phv.foodptit.repository.OrderItemRepository;
 import com.phv.foodptit.repository.OrderRepository;
 import com.phv.foodptit.repository.PaymentRepository;
 import com.phv.foodptit.repository.StatusOrderRepository;
@@ -139,7 +137,6 @@ public class OrderService {
             paginateResponse.setTotalPage(page.getTotalPages());
             return new DataResponse(HttpStatus.OK.value(), null, paginateResponse);
         } catch (Exception e) {
-            // TODO: handle exception
             return new DataResponse(HttpStatus.BAD_REQUEST.value(), null, null);
         }
     }

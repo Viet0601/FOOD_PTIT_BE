@@ -1,7 +1,6 @@
 package com.phv.foodptit.service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,12 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -63,12 +60,14 @@ public class JwtService {
                     .getBody();
 
             String email = claims.get("email", String.class);
+            String role = claims.get("authorities",String.class);
             if (email == null) return null;
 
             // Nếu refresh token còn sống → cấp access token mới
             return Jwts.builder()
                     .setSubject(email)
                     .claim("email", email)
+                    .claim("authorities", role)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + 30*60*1000))
                     .signWith(key, SignatureAlgorithm.HS256)

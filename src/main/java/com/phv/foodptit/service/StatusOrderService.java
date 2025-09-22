@@ -3,7 +3,6 @@ package com.phv.foodptit.service;
 import java.util.List;
 
 import org.apache.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.phv.foodptit.entity.StatusOrder;

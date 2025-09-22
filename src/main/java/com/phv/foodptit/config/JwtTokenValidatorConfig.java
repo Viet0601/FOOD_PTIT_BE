@@ -15,9 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.phv.foodptit.service.CustomUsersDetailsService;
 import com.phv.foodptit.service.JwtService;
-import com.phv.foodptit.service.UserService;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -42,7 +40,7 @@ public class JwtTokenValidatorConfig extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
                 String path= request.getServletPath();
-                if(this.PUBLIC_URL.contains(path))
+                if(PUBLIC_URL.contains(path))
                 {
                     filterChain.doFilter(request, response);
                     return;
