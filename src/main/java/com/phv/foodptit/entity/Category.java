@@ -25,7 +25,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    
+    private String url;
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Food>listFoods;
